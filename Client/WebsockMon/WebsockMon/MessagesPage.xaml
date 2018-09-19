@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WebsockMon.MessagesPage">
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <Label Text="Messages"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+            
+            <ListView x:Name="MessagesList" 
+                HorizontalOptions="Center"
+                ItemsSource="{Binding Messages}"
+                HasUnevenRows="True"
+                Margin="10,10,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="60">
+                            <StackLayout Orientation="Horizontal">
+                                <BoxView BackgroundColor="#7f8fa6" WidthRequest="5" Margin="0,0,0,5" />
+                                <StackLayout BackgroundColor="White" Orientation="Horizontal" Margin="5,5,10,5">
+                                    <Label Text="{Binding Id}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Status}" TextColor="Gray" />
+                                    <Label Text="{Binding Text}" TextColor="Gray" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button x:Name="ButtonClose" Text="Close"
+                VerticalOptions="Center" HorizontalOptions="Center">
+            </Button>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

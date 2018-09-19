@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WebsockMon"
+             x:Class="WebsockMon.MainPage">
+
+    <Grid RowSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="80*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition> 
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition Height="45*"></RowDefinition>
+            <RowDefinition Height="30*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="1" Text="Active Sessions"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            TextColor="Black" FontSize="56" />
+
+        <Image Grid.Row="1" Grid.Column="1"
+               Source="circle.png">
+        </Image>
+
+        <Label x:Name="SessionsCount" Grid.Row="1" Grid.Column="1" 
+            Text="{Binding Sessions.Count}"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            TextColor="White" FontSize="156">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer x:Name="LabelRefreshSessions" NumberOfTapsRequired="1" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <ListView x:Name="SessionList" Grid.Row="2" Grid.Column="1"
+            HorizontalOptions="Center"
+            ItemsSource="{Binding Sessions}"
+            SelectedItem="{Binding EditSession}"
+            HasUnevenRows="True"
+            Margin="10,10,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="60">
+                        <StackLayout Orientation="Horizontal">
+                            <BoxView BackgroundColor="#7f8fa6" WidthRequest="5" Margin="0,0,0,5" />
+                            <StackLayout BackgroundColor="White" Orientation="Vertical" Margin="5,5,10,5">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding User}" FontAttributes="Bold" />
+                                    <Label Text="{Binding Active, StringFormat='Is Active ? {0}'}" />
+                                </StackLayout>
+                                <Label Text="{Binding LoginTime, StringFormat='Logged in at : {0}'}" TextColor="Gray" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1"
+            HorizontalOptions = "CenterAndExpand"
+            VerticalOptions = "Center">
+
+            <Button x:Name="ButtonSessionDeactivate" Text="De-activate" IsEnabled="False">
+            </Button>
+
+            <Button x:Name="ButtonSessionDelete" Text="Delete" IsEnabled="False">
+            </Button>
+
+            <Button x:Name="ButtonSessionMessages" Text="Messages" IsEnabled="False">
+            </Button>
+
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>
